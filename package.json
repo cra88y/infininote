@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "heroku-postbuild": "npm run build --prefix frontend",
-    "install": "npm --prefix backend install backend && npm --prefix frontend install front-end",
+    "heroku-postbuild": "npm run build --prefix front-end",
+    "install": "npm --prefix backend install backend && npm --prefix front-end install front-end",
     "dev:backend": "npm install --prefix backend start",
-    "dev:frontend": "npm install --prefix frontend start",
+    "dev:frontend": "npm install --prefix front-end start",
     "sequelize": "npm run --prefix backend sequelize",
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
     "start": "npm start --prefix backend"
