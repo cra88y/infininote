@@ -23,4 +23,11 @@
   min-width: 33%;
   min-height: 5em;
   resize: none;
+  padding: 0.5em;
+  border-radius: 0;
+  outline: none;
+}
+.note-textarea:focus {
+  border: 2px solid black;
+  outline: none;
 }

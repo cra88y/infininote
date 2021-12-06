@@ -5,7 +5,31 @@ label,
 textarea {
   margin-bottom: 1em;
 }
+input:focus {
+  border-bottom: 2px solid black;
+  /* margin-bottom: -0.5px; */
+}
 
 h2 {
   font-size: 2em;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+}
+input {
+  overflow: hidden;
+  padding: 0.5em;
+  display: block;
+  border-radius: 2px;
+  border: none;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+  /* margin: 10px; */
+}
+input:focus {
+  outline: none;
 }
