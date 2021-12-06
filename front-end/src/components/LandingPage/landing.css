@@ -1,0 +1,18 @@
+.landing-flex {
+  display: flex;
+  justify-content: center;
+}
+.landing-content-flex {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  justify-content: center;
+  align-items: center;
+}
+.landing-title {
+  text-align: center;
+  margin: 0;
+}
+.landing-paragraph {
+  text-align: center;
+}

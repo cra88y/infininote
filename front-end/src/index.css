@@ -1,1 +1,10 @@
 /* TODO Add site wide styles */
+* {
+  box-sizing: border-box;
+}
+
+button {
+  color: white;
+  background: lightblue;
+  border: none;
+}

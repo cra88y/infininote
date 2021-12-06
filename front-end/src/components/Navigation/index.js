@@ -15,20 +15,20 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+        <NavLink to="/signup" className="nav-btn">
+          Sign Up
+        </NavLink>
       </>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">
-          Home
-        </NavLink>
-        {isLoaded && sessionLinks}
-      </li>
-    </ul>
+    <div className="nav-bar">
+      <NavLink exact to="/" className="navlink-nostyle">
+        <div className="logo-box">InfiniNote</div>
+      </NavLink>
+      <div className="nav-right">{isLoaded && sessionLinks}</div>
+    </div>
   );
 }
 
