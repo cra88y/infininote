@@ -1,0 +1,26 @@
+.note-card {
+  background-color: lightcyan;
+  margin: 1em;
+  padding: 1em;
+  max-width: 10em;
+  display: block;
+  min-width: 33vw;
+  min-height: 10em;
+}
+.note-title {
+  padding-bottom: 0.5em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+}
+.user-notes {
+  width: 100vw;
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.note-textarea {
+  min-width: 33%;
+  min-height: 5em;
+  resize: none;
+}

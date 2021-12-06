@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import "./loginform.css";
@@ -19,7 +19,6 @@ function LoginForm() {
       if (data && data.errors) setErrors(data.errors);
     });
   };
-
   return (
     <form onSubmit={handleSubmit}>
       <h2>Login</h2>

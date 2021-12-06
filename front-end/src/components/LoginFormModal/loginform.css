@@ -1,7 +1,8 @@
 #modal-content {
   padding: 1em 3em;
 }
-label {
+label,
+textarea {
   margin-bottom: 1em;
 }
 
