@@ -5,10 +5,9 @@ label,
 textarea {
   margin-bottom: 1em;
 }
-input:focus {
-  border-bottom: 2px solid black;
-  /* margin-bottom: -0.5px; */
-}
+/* input:focus {
+   border-bottom: 1.5px solid black;/
+} */
 
 h2 {
   font-size: 2em;

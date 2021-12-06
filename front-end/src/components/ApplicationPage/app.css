@@ -28,6 +28,6 @@
   outline: none;
 }
 .note-textarea:focus {
-  border: 2px solid black;
+  /* border: 1.5px solid black; */
   outline: none;
 }
