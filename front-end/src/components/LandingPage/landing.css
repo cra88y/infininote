@@ -10,9 +10,11 @@
   align-items: center;
 }
 .landing-title {
+  color: var(--dark);
   text-align: center;
   margin: 0;
 }
 .landing-paragraph {
   text-align: center;
+  color: var(--dark);
 }

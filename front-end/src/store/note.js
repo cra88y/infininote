@@ -29,7 +29,7 @@ export const setActiveNote = (noteObj) => async (dispatch) => {
 let isSaving = false;
 export const createNote = (noteObj) => async (dispatch) => {
   console.log(noteObj);
-  if (noteObj) {
+  if (noteObj && !isSaving) {
     isSaving = true;
     const res = await csrfFetch("/api/notes", {
       method: "POST",

@@ -10,7 +10,7 @@ function LoginFormModal() {
 
   const onClick = () => {
     if (sessionUser) history.push("/client");
-    setShowModal(true);
+    else setShowModal(true);
   };
 
   return (

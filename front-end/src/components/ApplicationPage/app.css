@@ -1,16 +1,20 @@
 .note-card {
-  background-color: lightcyan;
-  margin: 1em;
+  background-color: var(--accent);
+  /* margin: 1em; */
   padding: 1em;
   max-width: 10em;
   display: block;
-  min-width: 33vw;
+  min-width: 50vw;
   min-height: 10em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .note-title {
-  padding-bottom: 0.5em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
+  font-size: 1.5em;
+  /* padding-bottom: 0.5em; */
+  /* margin-bottom: 1em; */
+  border-bottom: 2px solid var(--dark);
 }
 .user-notes {
   /* width: 100vw; */
@@ -20,8 +24,9 @@
   /* flex-wrap: wrap; */
 }
 .note-textarea {
+  background-color: white;
   min-width: 33%;
-  min-height: 5em;
+  height: 100%;
   resize: none;
   padding: 0.5em;
   border-radius: 0;
@@ -39,12 +44,13 @@
 }
 
 .selected {
-
-  background-color: rgb(209, 208, 141);
+  filter: hue-rotate(-180deg);
 }
 .create-note {
+  padding: 1em;
+  background-color: var(--white);
   width: 30em;
-  border: 1px solid black;
+  border: 1px solid var(--dark);
 }
 .create-note > * > * {
   width: 100%;

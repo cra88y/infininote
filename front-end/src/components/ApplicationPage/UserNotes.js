@@ -28,8 +28,10 @@ export default function UserNotes() {
           key={note.id}
           className={`note-card ${note.id == activeNote?.id ? "selected" : ""}`}
         >
-          <h3 className="note-title">{note.title}</h3>
-          <p className="note-body">{note.content}</p>
+          <div>
+            <h3 className="note-title">{note.title}</h3>
+            <p className="note-body">{note.content}</p>
+          </div>
           <button onClick={() => onDeleteClick(note)}>Delete</button>
         </div>
       );

@@ -26,6 +26,7 @@ export default function CreateNote() {
   }, [activeNote]);
 
   const onFormChange = (e) => {
+    if (!title.length) return;
     const noteObj = {
       id: activeNote?.id,
       userid: sessionUser.id,
@@ -38,15 +39,19 @@ export default function CreateNote() {
     <div className="create-note">
       <button
         onClick={(e) => {
-          reset();
-          onFormChange(e);
+          if (activeNote) {
+            onFormChange(e);
+            reset();
+          }
         }}
       >
         New Note
       </button>
       <form onBlur={onFormChange} onFocus={(e) => onFormChange(e)}>
-        <label htmlFor="title">Title</label>
+        {/* <label htmlFor="title">Title</label> */}
         <input
+          className="note-title"
+          placeholder="Grocery List"
           name="title"
           onChange={(e) => {
             onFormChange(e);
@@ -54,8 +59,9 @@ export default function CreateNote() {
           }}
           value={title}
         />
-        <label htmlFor="content">Content</label>
+        {/* <label htmlFor="content">Content</label> */}
         <textarea
+          placeholder={` - milk\n - eggs\n - bread`}
           name="content"
           className="note-textarea"
           onChange={(e) => {

@@ -1,13 +1,28 @@
+:root {
+  --darkest: #0b0c10;
+  --dark: #1f2833;
+  --light: #c5c6c7;
+  --neon: #66fcf1;
+  --accent: #45a29e;
+}
 html {
+  background-color: var(--white);
   height: 100vh;
 }
 * {
   margin: 0;
   box-sizing: border-box;
 }
+h1,
+h2,
+h3,
+p {
+  color: var(--dark);
+}
 
 button {
   color: white;
-  background: lightblue;
+  background: var(--accent);
   border: none;
+  cursor: pointer;
 }

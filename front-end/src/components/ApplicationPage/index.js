@@ -8,27 +8,28 @@ import CreateNote from "./CreateNote";
 
 export default function ApplicationPage() {
   const sessionUser = useSelector((state) => state.session.user);
-  const notes = useSelector((state) => state.notes.notes);
   const history = useHistory();
+  const notes = useSelector((state) => state.notes.notes);
   const noteid = Object.keys(notes)[0];
   const dispatch = useDispatch();
   const activeNote = useSelector((state) => state.notes.activeNote);
+
   useEffect(() => {
     dispatch(loadNotes());
-  }, [sessionUser.id]);
+  }, [sessionUser]);
   if (!sessionUser) {
     history.push("/");
     return <></>;
-  } else
-    return (
-      <div>
-        <h1>Application</h1>
-        <div className="application-container">
-          <div className="user-notes">
-            <UserNotes />
-          </div>
-          <CreateNote />
+  }
+  return (
+    <div>
+      <h1>Welcome back, {sessionUser.username}!</h1>
+      <div className="application-container">
+        <div className="user-notes">
+          <UserNotes />
         </div>
+        <CreateNote />
       </div>
-    );
+    </div>
+  );
 }

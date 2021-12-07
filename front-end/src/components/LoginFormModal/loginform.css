@@ -4,6 +4,7 @@
 label,
 textarea {
   margin-bottom: 1em;
+  color: var(--neon);
 }
 /* input:focus {
    border-bottom: 1.5px solid black;/
@@ -18,14 +19,19 @@ form {
   justify-content: center;
   align-items: center;
   overflow: auto;
+  height: 100%;
+}
+form > * {
+  color: var(--darkest);
 }
 input {
+  background-color: rgba(0, 0, 0, 0);
   overflow: hidden;
   padding: 0.5em;
   display: block;
   border-radius: 2px;
   border: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid var(--accent);
   margin-bottom: 10px;
   /* margin: 10px; */
 }
