@@ -4,6 +4,7 @@ const LOAD = "notes/LOAD";
 const CREATE = "notes/CREATE";
 const REMOVE = "notes/REMOVE";
 const EDIT = "notes/EDIT";
+const SET_ACTIVE = "notes/SET_ACTIVE";
 const load = (notes) => ({
   type: LOAD,
   notes,
@@ -16,15 +17,30 @@ const remove = (noteObj) => ({
   type: REMOVE,
   noteObj,
 });
+const setActive = (noteObj) => ({
+  type: SET_ACTIVE,
+  noteObj,
+});
 
+export const setActiveNote = (noteObj) => async (dispatch) => {
+  dispatch(setActive(noteObj));
+};
+
+let isSaving = false;
 export const createNote = (noteObj) => async (dispatch) => {
-  const res = await csrfFetch("/api/notes", {
-    method: "POST",
-    body: JSON.stringify(noteObj),
-  });
-  if (res.ok) {
-    const data = await res.json();
-    dispatch(create(data));
+  console.log(noteObj);
+  if (noteObj) {
+    isSaving = true;
+    const res = await csrfFetch("/api/notes", {
+      method: "POST",
+      body: JSON.stringify(noteObj),
+    });
+    if (res.ok) {
+      const data = await res.json();
+      dispatch(create(data));
+      if (!noteObj.id) dispatch(setActive(data));
+    }
+    isSaving = false;
   }
 };
 
@@ -47,7 +63,7 @@ export const deleteNote = (note) => async (dispatch) => {
   });
   dispatch(remove(note));
 };
-const initialState = { notes: {} };
+const initialState = { notes: {}, activeNote: null };
 export const notesReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD: {
@@ -64,8 +80,15 @@ export const notesReducer = (state = initialState, action) => {
     }
     case REMOVE: {
       const newState = { ...state };
+      if (action.noteObj.id == newState.activeNote?.id)
+        delete newState.activeNote;
       delete newState.notes[action.noteObj.id];
+
       return { notes: { ...newState.notes } };
+    }
+    case SET_ACTIVE: {
+      const newState = { ...state, activeNote: { ...action.noteObj } };
+      return newState;
     }
     default: {
       return state;

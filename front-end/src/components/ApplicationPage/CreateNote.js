@@ -1,39 +1,69 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createNote } from "../../store/note";
+import { createNote, setActiveNote } from "../../store/note";
 
 export default function CreateNote() {
   const sessionUser = useSelector((state) => state.session.user);
+  const notes = useSelector((state) => state.notes.notes);
+  const activeNote = useSelector((state) => state.notes.activeNote);
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const reset = () => {
-    setTitle("");
-    setContent("");
+    // setTitle("");
+    // setContent("");
+    dispatch(setActiveNote(null));
+    console.log(activeNote);
   };
-  const onSubmit = (e) => {
-    e.preventDefault();
-    const noteObj = { userid: sessionUser.id, title, content };
+  useEffect(() => {
+    console.log(activeNote);
+    if (activeNote) {
+      setTitle(activeNote.title || "");
+      setContent(activeNote.content || "");
+    } else {
+      reset();
+    }
+  }, [activeNote]);
+
+  const onFormChange = (e) => {
+    const noteObj = {
+      id: activeNote?.id,
+      userid: sessionUser.id,
+      title,
+      content,
+    };
     dispatch(createNote(noteObj));
-    reset();
   };
   return (
-    <div>
-      <form onSubmit={onSubmit}>
+    <div className="create-note">
+      <button
+        onClick={(e) => {
+          reset();
+          onFormChange(e);
+        }}
+      >
+        New Note
+      </button>
+      <form onBlur={onFormChange} onFocus={(e) => onFormChange(e)}>
         <label htmlFor="title">Title</label>
         <input
           name="title"
-          onChange={(e) => setTitle(e.target.value)}
+          onChange={(e) => {
+            onFormChange(e);
+            setTitle(e.target.value);
+          }}
           value={title}
         />
         <label htmlFor="content">Content</label>
         <textarea
           name="content"
           className="note-textarea"
-          onChange={(e) => setContent(e.target.value)}
+          onChange={(e) => {
+            onFormChange(e);
+            setContent(e.target.value);
+          }}
           value={content}
         />
-        <button>Create note!</button>
       </form>
     </div>
   );

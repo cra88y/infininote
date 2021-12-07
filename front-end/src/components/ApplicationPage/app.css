@@ -13,11 +13,11 @@
   border-bottom: 2px solid black;
 }
 .user-notes {
-  width: 100vw;
+  /* width: 100vw; */
   display: flex;
-  /* flex-direction: column; */
+  flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 .note-textarea {
   min-width: 33%;
@@ -25,9 +25,27 @@
   resize: none;
   padding: 0.5em;
   border-radius: 0;
+  border: none;
   outline: none;
 }
 .note-textarea:focus {
   /* border: 1.5px solid black; */
   outline: none;
+}
+
+.application-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.selected {
+
+  background-color: rgb(209, 208, 141);
+}
+.create-note {
+  width: 30em;
+  border: 1px solid black;
+}
+.create-note > * > * {
+  width: 100%;
 }

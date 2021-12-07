@@ -19,7 +19,6 @@ router.delete(
   asyncHandler(async (req, res) => {
     const { user } = req;
     const noteid = req.params.id;
-    console.log(noteid);
     const note = await db.Note.findByPk(noteid);
     if (note) note.destroy();
     res.json("success");
@@ -30,15 +29,22 @@ router.post(
   restoreUser,
   asyncHandler(async (req, res) => {
     const { user } = req;
-    const { title, content } = req.body;
+    const { title, content, id } = req.body;
     const noteObj = {
       userid: user.id,
       title,
       content,
     };
-    const note = await db.Note.build(noteObj);
+    let note = null;
+    console.log(id);
+    if (id) {
+      note = await db.Note.findByPk(id);
+      note.title = title;
+      note.content = content;
+    } else {
+      note = await db.Note.build(noteObj);
+    }
     await note.save();
-    // console.log(notes);
     if (note) res.json(note);
     else res.json("invalid note");
   })
