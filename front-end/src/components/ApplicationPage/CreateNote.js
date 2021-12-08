@@ -9,21 +9,7 @@ export default function CreateNote() {
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const reset = () => {
-    // setTitle("");
-    // setContent("");
-    dispatch(setActiveNote(null));
-    console.log(activeNote);
-  };
-  useEffect(() => {
-    console.log(activeNote);
-    if (activeNote) {
-      setTitle(activeNote.title || "");
-      setContent(activeNote.content || "");
-    } else {
-      reset();
-    }
-  }, [activeNote]);
+  const [noteId, setNoteId] = useState(null);
 
   const onFormChange = (e) => {
     if (!title.length) return;
@@ -35,6 +21,30 @@ export default function CreateNote() {
     };
     dispatch(createNote(noteObj));
   };
+  const reset = () => {
+    dispatch(setActiveNote(null));
+  };
+
+  useEffect(() => {
+    console.log(noteId);
+    if (activeNote) {
+      let didMatch = false;
+      if (!noteId) {
+        const titleComp = title.slice(0, 1);
+        const newTitleComp = activeNote?.title?.slice(0, 1);
+        if (titleComp == newTitleComp) didMatch = true;
+        console.log(didMatch);
+      }
+      const addToTitle = didMatch ? title : "";
+      const addToContent = didMatch ? content : "";
+      setTitle(addToTitle || activeNote.title || "");
+      setContent(addToContent || activeNote.content || "");
+      setNoteId(activeNote.id || null);
+    } else {
+      reset();
+    }
+  }, [activeNote]);
+
   return (
     <div className="create-note">
       <button
