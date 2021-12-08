@@ -24,13 +24,12 @@ export default function CreateNote() {
   const reset = () => {
     dispatch(setActiveNote(null));
   };
-
   useEffect(() => {
     console.log(noteId);
     if (activeNote) {
       let didMatch = false;
       if (!noteId) {
-        const titleComp = title.slice(0, 1);
+        const titleComp = title[0];
         const newTitleComp = activeNote?.title?.slice(0, 1);
         if (titleComp == newTitleComp) didMatch = true;
         console.log(didMatch);
