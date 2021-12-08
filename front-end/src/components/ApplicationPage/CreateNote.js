@@ -63,8 +63,8 @@ export default function CreateNote() {
           placeholder="Grocery List"
           name="title"
           onChange={(e) => {
-            onFormChange(e);
             setTitle(e.target.value);
+            onFormChange(e);
           }}
           value={title}
         />
@@ -74,8 +74,8 @@ export default function CreateNote() {
           name="content"
           className="note-textarea"
           onChange={(e) => {
-            onFormChange(e);
             setContent(e.target.value);
+            onFormChange(e);
           }}
           value={content}
         />
