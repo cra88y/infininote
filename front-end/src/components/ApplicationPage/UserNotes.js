@@ -6,14 +6,18 @@ import {
   loadNotes,
   setActiveNote,
 } from "../../store/note";
+import MDEditor from "@uiw/react-md-editor";
+
 export default function UserNotes() {
-  const sessionUser = useSelector((state) => state.session.user);
+  // const sessionUser = useSelector((state) => state.session.user);
   const notes = useSelector((state) => state.notes.notes);
   const activeNote = useSelector((state) => state.notes.activeNote);
   const dispatch = useDispatch();
-  const onDeleteClick = (note) => {
+  const onDeleteClick = (e, note) => {
+    e.stopPropagation();
     dispatch(deleteNote(note));
   };
+
   let notesDisplay = null;
   const notesArray = [...Object.values(notes)];
   if (notesArray.length > 0) {
@@ -21,6 +25,9 @@ export default function UserNotes() {
       return new Date(b.updatedAt) - new Date(a.updatedAt);
     });
     notesDisplay = notesArray.map((note) => {
+      const notePreview = note.content
+        .replace(/[^a-zA-Z\d\s.]/gm, "")
+        .slice(0, 20);
       // console.log(note.id);
       return (
         <div
@@ -29,15 +36,29 @@ export default function UserNotes() {
           className={`note-card ${note.id == activeNote?.id ? "selected" : ""}`}
         >
           <div>
-            <h3 className="note-title">{note.title}</h3>
-            <p className="note-body">{note.content}</p>
+            <span className="note-title">{note.title}</span>
+            <MDEditor.Markdown
+              source={
+                notePreview +
+                (note.content.length > notePreview.length ? " . . ." : "")
+              }
+              className="note-body"
+            />
+            <br />
           </div>
-          <button onClick={() => onDeleteClick(note)}>Delete</button>
+          <button
+            className="delete-btn"
+            onClick={(e) => onDeleteClick(e, note)}
+          >
+            Delete
+          </button>
         </div>
       );
     });
   } else {
-    notesDisplay = <h2>You haven't created any notes yet!</h2>;
+    notesDisplay = (
+      <p className="note-card">You haven't created any notes yet!</p>
+    );
   }
   return notesDisplay;
 }

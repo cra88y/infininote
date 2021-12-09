@@ -1,56 +1,138 @@
 .note-card {
-  background-color: var(--accent);
+  background-color: white;
   /* margin: 1em; */
   padding: 1em;
-  max-width: 10em;
+  border-top: 1px solid var(--dark);
   display: block;
-  min-width: 50vw;
-  min-height: 10em;
+  height: 15em;
+
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: hidden;
+}
+.flex {
+  display: flex;
+  justify-content: center;
 }
 .note-title {
-  font-size: 1.5em;
+  font-size: 1.5vw;
+  font-weight: bold;
+  padding: 0.25em 0;
+  display: block;
+  border-radius: 2px;
+  border: none;
+  /* border-bottom: 1px solid var(--accent); */
+  margin-bottom: 10px;
   /* padding-bottom: 0.5em; */
   /* margin-bottom: 1em; */
-  border-bottom: 2px solid var(--dark);
+  border-bottom: 1px solid var(--dark);
+  max-height: 5rem;
+  overflow: hidden;
+  /* padding-bottom: 1rem; */
+  max-width: 100%;
 }
+.delete-btn {
+  width: fit-content;
+}
+.newNote-btn {
+  float: right;
+  /* border-left: 1px solid var(--dark); */
+  height: 3vh;
+  width: auto;
+  font-size: 0.75vw;
+  flex-grow: 100;
+}
+
 .user-notes {
+  max-width: 10em;
+  min-width: 25vw;
+  height: fit-content;
+  border: 1px solid var(--dark);
   /* width: 100vw; */
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  /* flex-wrap: wrap; */
+  justify-content: flex-start;
 }
-.note-textarea {
+.collections-col {
+  max-width: 20vw;
+  min-width: 15vw;
+  height: fit-content;
+  border-bottom: 1px solid var(--dark);
+  border-right: 0;
+  /* width: 100vw; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.collection-name {
   background-color: white;
+  border: 1px solid var(--dark);
+  border-bottom: 0;
+  border-right: 0;
+  height: 3vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5vw;
+  font-weight: bold;
+}
+.user-notes-topbar {
+  height: 3vh;
+  display: flex;
+  justify-content: center;
+}
+.w-md-editor,
+.note-textarea {
+  background-color: rgba(0, 0, 0, 0);
   min-width: 33%;
-  height: 100%;
   resize: none;
-  padding: 0.5em;
+  /* padding: 0.5em; */
   border-radius: 0;
   border: none;
   outline: none;
 }
 .note-textarea:focus {
-  /* border: 1.5px solid black; */
+  height: auto;
   outline: none;
 }
 
 .application-container {
   display: flex;
   justify-content: space-evenly;
+  height: fit-content;
+  width: 90%;
+  margin: 1%;
+}
+.application-frame {
+  display: flex;
+  justify-content: center;
+}
+.application-title {
+  font-size: 2vw;
+  color: var(--accent);
+  padding: 0.5rem;
+  border: 1px solid var(--dark);
+  border-bottom: 0;
+}
+.notebook-name {
+  font-size: 1vw;
+  padding: 0 0.5rem;
 }
 
 .selected {
-  filter: hue-rotate(-180deg);
+  filter: brightness(95%);
 }
 .create-note {
+  overflow: hidden;
   padding: 1em;
   background-color: var(--white);
-  width: 30em;
+  width: 60%;
   border: 1px solid var(--dark);
+  max-height: auto;
+  min-height: 50vh;
+  margin-left: 1vw;
 }
 .create-note > * > * {
   width: 100%;

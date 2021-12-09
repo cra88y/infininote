@@ -16,7 +16,8 @@
 }
 .logo-box {
   margin: 10px;
-
+  font-weight: bolder;
+  font-size: 2rem;
   text-decoration: none;
   color: var(--neon);
 }
@@ -39,6 +40,6 @@
   list-style: none;
 }
 .profile-btn {
-  height: 3em;
+  height: 3rem;
   width: 3em;
 }

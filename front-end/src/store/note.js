@@ -26,11 +26,11 @@ export const setActiveNote = (noteObj) => async (dispatch) => {
   dispatch(setActive(noteObj));
 };
 
-let isSaving = false;
+let isNewSave = false;
 export const createNote = (noteObj) => async (dispatch) => {
   console.log(noteObj);
-  if (noteObj && !isSaving) {
-    isSaving = true;
+  if (noteObj && !isNewSave) {
+    if (!noteObj.id) isNewSave = true;
     const res = await csrfFetch("/api/notes", {
       method: "POST",
       body: JSON.stringify(noteObj),
@@ -40,7 +40,7 @@ export const createNote = (noteObj) => async (dispatch) => {
       dispatch(create(data));
       if (!noteObj.id) dispatch(setActive(data));
     }
-    isSaving = false;
+    isNewSave = false;
   }
 };
 

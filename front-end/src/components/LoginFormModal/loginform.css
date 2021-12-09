@@ -6,13 +6,6 @@ textarea {
   margin-bottom: 1em;
   color: var(--neon);
 }
-/* input:focus {
-   border-bottom: 1.5px solid black;/
-} */
-
-h2 {
-  font-size: 2em;
-}
 form {
   display: flex;
   flex-direction: column;
@@ -27,12 +20,10 @@ form > * {
 input {
   background-color: rgba(0, 0, 0, 0);
   overflow: hidden;
-  padding: 0.5em;
   display: block;
-  border-radius: 2px;
   border: none;
   border-bottom: 1px solid var(--accent);
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   /* margin: 10px; */
 }
 input:focus {
