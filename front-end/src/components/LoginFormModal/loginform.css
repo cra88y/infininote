@@ -15,7 +15,7 @@ form {
   height: 100%;
 }
 form > * {
-  color: var(--darkest);
+  color: var(--dark);
 }
 input {
   background-color: rgba(0, 0, 0, 0);

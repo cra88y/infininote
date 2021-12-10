@@ -6,7 +6,6 @@
   margin: 10px;
   padding: 10px;
   font-size: 1em;
-  font-weight: nomral;
   max-width: 8em;
 }
 .nav-bar {
@@ -28,18 +27,24 @@
 .nav-right {
   display: flex;
   justify-content: right;
+  height: 75px;
+  /* height: auto; */
 }
 .profile-dropdown {
-  top: 3em;
+  padding: 1rem;
+  top: 4em;
   right: 1em;
   position: absolute;
+  z-index: 999;
+  background-color: white;
+  border: 1px solid var(--accent);
 }
 
 .profile-dropdown > li {
-  text-align: right;
+  /* text-align: right; */
   list-style: none;
 }
 .profile-btn {
-  height: 3rem;
-  width: 3em;
+  height: 100%;
+  width: 75px;
 }

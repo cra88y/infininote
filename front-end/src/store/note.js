@@ -28,9 +28,8 @@ export const setActiveNote = (noteObj) => async (dispatch) => {
 
 let isNewSave = false;
 export const createNote = (noteObj) => async (dispatch) => {
-  console.log(noteObj);
   if (noteObj && !isNewSave) {
-    if (!noteObj.id) isNewSave = true;
+    if (noteObj.id == undefined) isNewSave = true;
     const res = await csrfFetch("/api/notes", {
       method: "POST",
       body: JSON.stringify(noteObj),
@@ -38,9 +37,11 @@ export const createNote = (noteObj) => async (dispatch) => {
     if (res.ok) {
       const data = await res.json();
       dispatch(create(data));
-      if (!noteObj.id) dispatch(setActive(data));
+      if (!noteObj.id) {
+        dispatch(setActive(data));
+        isNewSave = false;
+      }
     }
-    isNewSave = false;
   }
 };
 
@@ -87,7 +88,7 @@ export const notesReducer = (state = initialState, action) => {
       return { notes: { ...newState.notes } };
     }
     case SET_ACTIVE: {
-      const newState = { ...state, activeNote: { ...action.noteObj } };
+      const newState = { ...state, activeNote: action.noteObj };
       return newState;
     }
     default: {

@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/cra88y/infininote/issues"
   },
-  "homepage": "https://github.com/cra88y/infininote#readme"
+  "homepage": "https://github.com/cra88y/infininote#readme",
+  "dependencies": {
+    "react-css-filter": "^1.0.4"
+  }
 }

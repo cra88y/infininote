@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-
+  const [theme, setTheme] = useState(0);
+  const userTheme = useSelector((state) => state.session.theme);
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
   };
 
+  const closeMenu = () => {
+    setShowMenu(false);
+  };
+
+  useEffect(() => {
+    dispatch(sessionActions.setUserTheme(Number(theme)));
+  }, [theme]);
+
   useEffect(() => {
     if (!showMenu) return;
 
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
-
-    document.addEventListener("click", closeMenu);
+    // document.addEventListener("click", closeMenu);
 
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
@@ -29,7 +34,18 @@ function ProfileButton({ user }) {
   };
 
   return (
-    <>
+    <div
+      onBlur={(e) => {
+        const currentTarget = e.currentTarget;
+        setTimeout(() => {
+          // Check if the new activeElement is a child of the original container
+          if (!currentTarget.contains(document.activeElement)) {
+            // You can invoke a callback or add custom logic here
+            closeMenu();
+          }
+        }, 0);
+      }}
+    >
       <button className="profile-btn" onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
@@ -38,11 +54,21 @@ function ProfileButton({ user }) {
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li>
+            <span>Theme:</span>
+            <input
+              type="range"
+              min="0"
+              max="360"
+              value={theme}
+              onChange={(e) => setTheme(e.target.value)}
+            />
+          </li>
+          <li>
             <button onClick={logout}>Log Out</button>
           </li>
         </ul>
       )}
-    </>
+    </div>
   );
 }
 

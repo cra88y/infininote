@@ -29,21 +29,24 @@ router.post(
   restoreUser,
   asyncHandler(async (req, res) => {
     const { user } = req;
-    const { title, content, id } = req.body;
+    const { title, content, id, collectionid } = req.body;
     const noteObj = {
       userid: user.id,
+      collectionid,
       title,
       content,
     };
     let note = null;
-    console.log(id);
+
     if (id) {
       note = await db.Note.findByPk(id);
+      note.collectionid = collectionid;
       note.title = title;
       note.content = content;
     } else {
       note = await db.Note.build(noteObj);
     }
+    console.log(note.collectionid);
     await note.save();
     if (note) res.json(note);
     else res.json("invalid note");

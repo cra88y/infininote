@@ -9,14 +9,106 @@
   text-rendering: optimizeLegibility;
 }
 html {
-  background-color: white;
+  background-color: whitesmoke;
   height: 100vh;
   /* this would be sick for theming */
-  filter: hue-rotate(-180deg);
+  /* filter: hue-rotate(-180deg); */
 }
 * {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  color: var(--dark);
   margin: 0;
   box-sizing: border-box;
+}
+/** CSS Reset **/
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
 }
 h1,
 h2,
@@ -33,4 +125,18 @@ button {
   background: var(--accent);
   border: none;
   cursor: pointer;
+  filter: brightness(110%);
+  /* font-size: 10px; */
+}
+button:hover {
+  filter: brightness(115%);
+}
+strong {
+  font-weight: bold;
+}
+.fas {
+  color: white;
+}
+svg {
+  width: 1vw;
 }

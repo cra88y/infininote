@@ -6,9 +6,11 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import LandingPage from "./components/LandingPage";
 import ApplicationPage from "./components/ApplicationPage";
+import Filter from "react-css-filter";
 function App() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const userTheme = useSelector((state) => state.session.theme);
   const [isLoaded, setIsLoaded] = useState(false);
   const history = useHistory();
   useEffect(() => {
@@ -21,20 +23,22 @@ function App() {
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          <Route exact path="/">
-            <LandingPage />
-          </Route>
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
-          <Route path="/client">
-            <ApplicationPage />
-          </Route>
-        </Switch>
-      )}
+      <Filter effects={{ "hue-rotate": `${userTheme}deg` }}>
+        <Navigation isLoaded={isLoaded} />
+        {isLoaded && (
+          <Switch>
+            <Route exact path="/">
+              <LandingPage />
+            </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+            <Route path="/client">
+              <ApplicationPage />
+            </Route>
+          </Switch>
+        )}
+      </Filter>
     </>
   );
 }

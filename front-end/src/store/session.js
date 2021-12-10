@@ -5,6 +5,8 @@ const { csrfFetch } = require("./csrf");
 const LOGIN = "users/LOGIN";
 const LOGOUT = "users/LOGOUT";
 
+const SET_THEME = "users/SET_THEME";
+
 const login = (user) => ({
   type: LOGIN,
   user,
@@ -12,6 +14,15 @@ const login = (user) => ({
 const logout = () => ({
   type: LOGOUT,
 });
+
+const setTheme = (num) => ({
+  type: SET_THEME,
+  num,
+});
+
+export const setUserTheme = (num) => async (dispatch) => {
+  dispatch(setTheme(num));
+};
 
 export const loginUser =
   ({ username, password }) =>
@@ -35,6 +46,7 @@ export const logoutUser = () => async (dispatch) => {
   const res = await csrfFetch("/api/session", { method: "DELETE" });
   if (res.ok) {
     dispatch(logout());
+    // window.location.reload(true);
     return res;
   } else {
   }
@@ -62,7 +74,7 @@ export const signup = (user) => async (dispatch) => {
   return response;
 };
 
-const initialState = { user: null };
+const initialState = { user: null, theme: 0 };
 export const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN: {
@@ -72,6 +84,11 @@ export const sessionReducer = (state = initialState, action) => {
     }
     case LOGOUT: {
       return { ...initialState };
+    }
+    case SET_THEME: {
+      const newState = { ...state };
+      newState.theme = action.num;
+      return newState;
     }
     default: {
       return state;

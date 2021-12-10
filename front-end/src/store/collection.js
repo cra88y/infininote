@@ -28,7 +28,7 @@ export const setActiveCollection = (collectionObj) => async (dispatch) => {
 
 let isNewSave = false;
 export const createCollection = (collectionObj) => async (dispatch) => {
-  console.log(collectionObj);
+  // console.log(collectionObj);
   if (collectionObj && !isNewSave) {
     if (!collectionObj.id) isNewSave = true;
     const res = await csrfFetch("/api/collections", {
@@ -92,7 +92,7 @@ export const collectionsReducer = (state = initialState, action) => {
     case SET_ACTIVE: {
       const newState = {
         ...state,
-        activeCollection: { ...action.collectionObj },
+        activeCollection: action.collectionObj,
       };
       return newState;
     }

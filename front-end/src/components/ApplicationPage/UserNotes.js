@@ -12,26 +12,37 @@ export default function UserNotes() {
   // const sessionUser = useSelector((state) => state.session.user);
   const notes = useSelector((state) => state.notes.notes);
   const activeNote = useSelector((state) => state.notes.activeNote);
-  const dispatch = useDispatch();
-  const onDeleteClick = (e, note) => {
-    e.stopPropagation();
-    dispatch(deleteNote(note));
-  };
+  const activeCollection = useSelector(
+    (state) => state.collections.activeCollection
+  );
 
+  const dispatch = useDispatch();
+  const resetActiveNote = () => {
+    dispatch(setActiveNote(null));
+  };
   let notesDisplay = null;
-  const notesArray = [...Object.values(notes)];
-  if (notesArray.length > 0) {
-    notesArray.sort((a, b) => {
-      return new Date(b.updatedAt) - new Date(a.updatedAt);
+  let notesArray = [...Object.values(notes)];
+  notesArray.sort((a, b) => {
+    return new Date(b.updatedAt) - new Date(a.updatedAt);
+  });
+  if (activeCollection?.all) {
+  } else {
+    notesArray = notesArray.filter((note) => {
+      return note.collectionid == activeCollection?.id;
     });
+  }
+  // console.log(notesArray);
+  if (notesArray.length > 0) {
     notesDisplay = notesArray.map((note) => {
       const notePreview = note.content
-        .replace(/[^a-zA-Z\d\s.]/gm, "")
+        .replace(/[:*~#\[\]\]]/gm, "")
         .slice(0, 20);
       // console.log(note.id);
       return (
         <div
-          onClick={() => dispatch(setActiveNote(note))}
+          onClick={() => {
+            dispatch(setActiveNote(note));
+          }}
           key={note.id}
           className={`note-card ${note.id == activeNote?.id ? "selected" : ""}`}
         >
@@ -46,19 +57,25 @@ export default function UserNotes() {
             />
             <br />
           </div>
-          <button
-            className="delete-btn"
-            onClick={(e) => onDeleteClick(e, note)}
-          >
-            Delete
-          </button>
+          <div className="note-card-utils">
+            <button
+              className="delete-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                dispatch(deleteNote(note));
+              }}
+            >
+              Delete
+            </button>
+            <p className="updated-string">
+              {new Date(note.updatedAt).toLocaleDateString()}
+            </p>
+          </div>
         </div>
       );
     });
   } else {
-    notesDisplay = (
-      <p className="note-card">You haven't created any notes yet!</p>
-    );
+    notesDisplay = <div className="note-card">No notes yet!</div>;
   }
   return notesDisplay;
 }
