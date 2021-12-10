@@ -7,6 +7,9 @@
   padding: 10px;
   font-size: 1em;
   max-width: 8em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
 }
 .nav-bar {
   display: flex;
