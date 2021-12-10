@@ -54,19 +54,19 @@ export default function CreateNote({
       // return;
     }
     if (!title.length) {
-      valErrors.push(" - Note name is too short!");
+      valErrors.push(" Note name is too short".toUpperCase());
     }
     if (title.length > 80) {
-      valErrors.push(" - Note name is too long!");
+      valErrors.push("Note name is too long");
     }
     if (content.length > 3000) {
-      valErrors.push(" - Note length must be < 3000 characters!");
+      valErrors.push("Note length must be < 3000 characters".toUpperCase());
     }
     if (valErrors.length == 0) {
       setTimeout(() => {
         // console.log(activeNote);
         // console.log(noteId);
-        console.log("note save on in CreateNote");
+        console.log("note save on in CreateNote".toUpperCase());
         const noteObj = {
           id: activeNote?.id,
           userid: sessionUser.id,
@@ -256,11 +256,11 @@ export default function CreateNote({
       onClick={(e) => {
         setEditing(true);
       }}
-      className="create-note"
+      className={`create-note threedee ${errors.length ? "problem" : ""}`}
     >
       {errors.length > 0 && (
         <>
-          <span className="error-item">SAVE PREVENTED</span>
+          {/* <span className="error-item">SAVE PREVENTED</span> */}
           <ul>
             {errors.map((err) => {
               return (

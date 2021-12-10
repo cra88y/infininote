@@ -98,11 +98,11 @@ export default function ApplicationPage() {
       <div className="application-frame">
         <div className="application-container">
           <div>
-            <h1 className="application-title">
+            <h1 className="application-title threedee">
               Welcome back, {sessionUser.username}!
             </h1>
             <div className="flex">
-              <div className="collections-col">
+              <div className="collections-col threedee">
                 {
                   <div className="user-notes-topbar">
                     <button
@@ -139,7 +139,7 @@ export default function ApplicationPage() {
                           <ul>
                             {errors.map((err) => {
                               return (
-                                <li className="error-item" key={err}>
+                                <li className="error-item problem" key={err}>
                                   {err}
                                 </li>
                               );
@@ -209,7 +209,7 @@ export default function ApplicationPage() {
                   )
                 )}
               </div>
-              <div className="user-notes">
+              <div className="user-notes threedee">
                 <div className="user-notes-topbar">
                   <button
                     className="newNote-btn"

@@ -67,7 +67,7 @@
 }
 .newNote-btn {
   /* float: right; */
-  /* border-left: 1px solid var(--dark); */
+  /* outline: 2px solid var(--accent); */
   height: auto;
   width: 100%;
   font-size: 1.25vw;
@@ -203,6 +203,7 @@
   /* height: fit-content; */
   /* height: fit-content; */
 }
+
 .create-note {
   overflow: hidden;
   padding: 1em;
@@ -241,4 +242,11 @@ select:focus {
   color: var(--accent);
   list-style: none;
   font-weight: bolder;
+}
+.threedee {
+  /* border: 5px solid var(--accent); */
+  box-shadow: 7.5px 7.5px var(--accent);
+}
+.problem {
+  filter: hue-rotate(180deg);
 }
