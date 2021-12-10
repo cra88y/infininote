@@ -159,8 +159,10 @@ export default function CreateNote({
       {/* <label htmlFor="title">Title</label> */}
       <div>
         <input
+          maxLength={80}
           onClick={(e) => e.stopPropagation()}
           className="note-title"
+          autoFocus={true}
           placeholder="Untitled"
           name="title"
           onChange={(e) => {
@@ -216,6 +218,8 @@ export default function CreateNote({
         )}
       </div>
       <MDEditor
+        autoFocus={noteId}
+        maxLength={50}
         preview={"edit"}
         visiableDragbar={false}
         height={window.outerHeight}

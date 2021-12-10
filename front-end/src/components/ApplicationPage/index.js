@@ -132,7 +132,7 @@ export default function ApplicationPage() {
                 </div>
                 {Object.values(collections).map((coll) =>
                   isCreatingCollection && activeCollection?.id == coll.id ? (
-                    <div className="collection-name">
+                    <div key={coll.id} className="collection-name">
                       {errors.length > 0 && (
                         <>
                           {/* <span className="error-item">SAVE PREVENTED</span> */}
@@ -148,7 +148,10 @@ export default function ApplicationPage() {
                         </>
                       )}
                       <input
-                        placeholder="click to change"
+                        autoFocus={true}
+                        minLength={1}
+                        maxLength={20}
+                        placeholder={coll.name}
                         onBlur={(e) => {
                           const currentTarget = e.currentTarget;
                           setTimeout(() => {
