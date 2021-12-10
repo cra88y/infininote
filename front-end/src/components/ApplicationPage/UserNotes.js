@@ -36,7 +36,7 @@ export default function UserNotes() {
     notesDisplay = notesArray.map((note) => {
       const notePreview = note.content
         .replace(/[:*~#\[\]\]]/gm, "")
-        .slice(0, 20);
+        .slice(0, 150);
       // console.log(note.id);
       return (
         <div
@@ -46,7 +46,7 @@ export default function UserNotes() {
           key={note.id}
           className={`note-card ${note.id == activeNote?.id ? "selected" : ""}`}
         >
-          <div>
+          <div className="note-preview">
             <span className="note-title">{note.title}</span>
             <MDEditor.Markdown
               source={

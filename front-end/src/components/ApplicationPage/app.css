@@ -4,12 +4,16 @@
   padding: 1em;
   border-top: 1px solid var(--dark);
   display: block;
-  min-height: 30vh;
+  min-height: 15rem;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: auto;
+}
+.note-preview {
+  overflow: hidden;
+  max-height: 20rem;
 }
 .note-card-utils {
   display: flex;
@@ -196,7 +200,7 @@
 
 .selected {
   filter: brightness(96%);
-  height: fit-content;
+  /* height: fit-content; */
   /* height: fit-content; */
 }
 .create-note {

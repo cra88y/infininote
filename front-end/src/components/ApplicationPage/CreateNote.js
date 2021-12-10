@@ -49,7 +49,9 @@ export default function CreateNote({
     const valErrors = [];
     if (!noteId && !title.length && !content.length) {
       setErrors(valErrors);
+      setEditing(true);
       return;
+      // return;
     }
     if (!title.length) {
       valErrors.push(" - Note name is too short!");
@@ -90,7 +92,7 @@ export default function CreateNote({
     }
   }, [title, content, activeCollection]);
   useEffect(() => {
-    setEditing(false);
+    // setEditing(true);
     // reset();
   }, [activeCollection]);
   const resetActiveNote = () => {
@@ -108,14 +110,15 @@ export default function CreateNote({
         const newTitleComp = activeNote?.title?.slice(0, 1);
         if (titleComp == newTitleComp) didMatch = true;
       }
-      if (!changingCollection) {
-        const addToTitle = didMatch ? title : "";
-        const addToContent = didMatch ? content : "";
-        setTitle(addToTitle || activeNote.title || "");
-        setContent(addToContent || activeNote.content || "");
-      }
+      // if (!changingCollection) {
+      const addToTitle = didMatch ? title : "";
+      const addToContent = didMatch ? content : "";
+      setTitle(addToTitle || activeNote.title || "");
+      setContent(addToContent || activeNote.content || "");
       setNoteId(activeNote.id || null);
       setEditing(didMatch);
+      // }
+
       if (didMatch) {
         onFormChange();
       }
