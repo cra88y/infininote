@@ -165,7 +165,7 @@ export default function CreateNote({
           maxLength={80}
           onClick={(e) => e.stopPropagation()}
           className="note-title"
-          autoFocus={true}
+          autoFocus={!noteId}
           placeholder="Untitled"
           name="title"
           onChange={(e) => {
@@ -221,12 +221,12 @@ export default function CreateNote({
         )}
       </div>
       <MDEditor
+        highlightEnable={false}
         autoFocus={noteId}
-        maxLength={50}
         preview={"edit"}
         visiableDragbar={false}
-        height={window.outerHeight}
-        onFocus={(e) => setEditing(true)}
+        height={window.screen.height * 0.65}
+        // onFocus={(e) => setEditing(true)}
         name="content"
         className="note-textarea"
         onChange={(val) => {

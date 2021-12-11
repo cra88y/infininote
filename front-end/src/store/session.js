@@ -6,7 +6,7 @@ const LOGIN = "users/LOGIN";
 const LOGOUT = "users/LOGOUT";
 
 const SET_THEME = "users/SET_THEME";
-
+const SET_DARK = "user/SET_DARK";
 const login = (user) => ({
   type: LOGIN,
   user,
@@ -20,8 +20,17 @@ const setTheme = (num) => ({
   num,
 });
 
+const setDark = (dark) => ({
+  type: SET_DARK,
+  dark,
+});
+
 export const setUserTheme = (num) => async (dispatch) => {
   dispatch(setTheme(num));
+};
+
+export const setUserDark = (isDark) => async (dispatch) => {
+  dispatch(setDark(isDark));
 };
 
 export const loginUser =
@@ -88,6 +97,11 @@ export const sessionReducer = (state = initialState, action) => {
     case SET_THEME: {
       const newState = { ...state };
       newState.theme = action.num;
+      return newState;
+    }
+    case SET_DARK: {
+      const newState = { ...state };
+      newState.dark = action.dark;
       return newState;
     }
     default: {

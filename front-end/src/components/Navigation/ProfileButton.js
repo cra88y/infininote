@@ -6,6 +6,7 @@ function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const [theme, setTheme] = useState(0);
+  const [dark, setDark] = useState(false);
   const userTheme = useSelector((state) => state.session.theme);
   const openMenu = () => {
     if (showMenu) return;
@@ -19,7 +20,10 @@ function ProfileButton({ user }) {
   useEffect(() => {
     dispatch(sessionActions.setUserTheme(Number(theme)));
   }, [theme]);
-
+  useEffect(() => {
+    console.log(dark);
+    dispatch(sessionActions.setUserDark(dark));
+  }, [dark]);
   useEffect(() => {
     if (!showMenu) return;
 
@@ -62,6 +66,12 @@ function ProfileButton({ user }) {
               value={theme}
               onChange={(e) => setTheme(e.target.value)}
             />
+            {/* <span>Dark:</span>
+            <input
+              type="checkbox"
+              value={theme}
+              onChange={(e) => setDark(e.target.checked)}
+            /> */}
           </li>
           <li>
             <button onClick={logout}>Log Out</button>

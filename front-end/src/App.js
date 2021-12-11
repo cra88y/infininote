@@ -11,6 +11,7 @@ function App() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const userTheme = useSelector((state) => state.session.theme);
+  const userIsDark = useSelector((state) => state.session.dark);
   const [isLoaded, setIsLoaded] = useState(false);
   const history = useHistory();
   useEffect(() => {
@@ -23,7 +24,17 @@ function App() {
 
   return (
     <>
-      <Filter effects={{ "hue-rotate": `${userTheme}deg` }}>
+      <Filter
+        effects={{
+          "hue-rotate": `${userTheme}deg`,
+        }}
+      >
+        {/* <Filter
+          effects={{
+            invert: `${userIsDark ? "95%" : "0%"}`,
+            "hue-rotate": `${userIsDark ? "180deg" : "0deg"}`,
+          }}
+        > */}
         <Navigation isLoaded={isLoaded} />
         {isLoaded && (
           <Switch>
@@ -38,6 +49,7 @@ function App() {
             </Route>
           </Switch>
         )}
+        {/* </Filter> */}
       </Filter>
     </>
   );

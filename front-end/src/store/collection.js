@@ -63,13 +63,13 @@ export const deleteCollection = (collection) => async (dispatch) => {
   });
   dispatch(remove(collection));
 };
-const initialState = { collections: {}, activeCollection: null };
+const initialState = { collections: {}, activeCollection: { all: true } };
 export const collectionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD: {
       const newState = {
         collections: action.collections,
-        activeCollection: Object.values(action.collections)[0],
+        activeCollection: { all: true },
       };
       return newState;
     }

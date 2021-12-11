@@ -173,7 +173,6 @@
   height: auto;
   outline: none;
 }
-
 .application-container {
   display: flex;
   justify-content: space-evenly;
@@ -245,7 +244,7 @@ select:focus {
 }
 .threedee {
   /* border: 5px solid var(--accent); */
-  box-shadow: 7.5px 7.5px var(--accent);
+  box-shadow: 8px 8px var(--accent);
 }
 .problem {
   filter: hue-rotate(180deg);

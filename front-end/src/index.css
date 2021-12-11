@@ -11,12 +11,12 @@
 html {
   background-color: whitesmoke;
   height: 100vh;
-  /* this would be sick for theming */
-  /* filter: hue-rotate(-180deg); */
+  /* background: black; */
+  /* filter: invert(90%) hue-rotate(180deg); */
 }
 * {
   font-family: "Roboto", sans-serif;
-  font-weight: 600;
+  /* font-weight: 700; */
   color: var(--dark);
   margin: 0;
   box-sizing: border-box;
@@ -103,12 +103,18 @@ time,
 mark,
 audio,
 video {
+  /* font-family: "Roboto", sans-serif; */
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
+  /* font-size: 20px; */
   font: inherit;
   vertical-align: baseline;
+  /* font-weight: 500; */
+}
+div,
+span {
+  /* font-weight: bold; */
 }
 h1,
 h2,
@@ -129,10 +135,10 @@ button {
   /* font-size: 10px; */
 }
 button:hover {
-  filter: brightness(115%);
+  filter: brightness(125%);
 }
 strong {
-  font-weight: bold;
+  font-weight: 600;
 }
 .fas {
   color: white;
