@@ -24,7 +24,7 @@ export default function ApplicationPage() {
   const [isCreatingCollection, setIsCreatingCollection] = useState(false);
   const [isEditing, setEditing] = useState(false);
   const [errors, setErrors] = useState([]);
-  console.log(errors);
+  // console.log(errors);
   const collections =
     useSelector((state) => state.collections.collections) || {};
   const history = useHistory();
@@ -68,7 +68,7 @@ export default function ApplicationPage() {
     setErrors(valErrors);
   }, [collectionName]);
   useEffect(() => {
-    if (activeCollection) {
+    if (activeCollection && isCreatingCollection) {
       // setTimeout(() => {
       // }, 0);
       // if (activeNote?.collectionId != activeCollection?.id) resetActiveNote(); //TODO PLS FIX
@@ -78,7 +78,7 @@ export default function ApplicationPage() {
         const newCollectionComp = activeCollection?.name?.slice(0, 1);
         if (collectionComp == newCollectionComp) didMatch = true;
       }
-      console.log(didMatch);
+      // console.log(didMatch);
       const addToCollectionName = didMatch ? collectionName : "";
       setCollectionName(addToCollectionName || activeCollection.name || "");
       setCollectionId(activeCollection.id || null);

@@ -63,6 +63,7 @@ export default function CreateNote({
       valErrors.push("Note length must be < 3000 characters".toUpperCase());
     }
     if (valErrors.length == 0) {
+    
       setTimeout(() => {
         // console.log(activeNote);
         // console.log(noteId);
