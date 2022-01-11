@@ -60,7 +60,7 @@ router.delete("/", (_req, res) => {
 router.get(
   "/demo",
   asyncHandler(async (req, res, next) => {
-    const user = await User.findByPk(11);
+    const user = await User.findByPk(16);
 
     if (!user) {
       const err = new Error("Login failed");
