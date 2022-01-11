@@ -5,12 +5,9 @@
   width: 400px;
   height: 400px;
 }
-label,
-textarea {
+label {
   margin-bottom: 1em;
   font-weight: bold;
-  color: var(--accent);
-  text-align: center;
 }
 .login-title {
   margin-top: -6.2rem;
