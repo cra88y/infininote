@@ -3,7 +3,7 @@
   --darkest: #0b0c10;
   --dark: #1f2833;
   --light: #c5c6c7;
-  --neon: #66fcf1;
+  --neon: #00bbab;
   --accent: #45a29e;
   font-family: "Roboto", sans-serif;
   text-rendering: optimizeLegibility;
@@ -111,10 +111,7 @@ video {
   vertical-align: baseline;
   /* font-weight: 500; */
 }
-div,
-span {
-  /* font-weight: bold; */
-}
+
 h1,
 h2,
 h3,
@@ -132,8 +129,11 @@ button {
   cursor: pointer;
   filter: brightness(110%);
   /* font-size: 10px; */
+  transition: filter 0.15s;
 }
-button:hover {
+
+button:hover,
+.nav-btn:hover {
   filter: brightness(125%);
 }
 strong {

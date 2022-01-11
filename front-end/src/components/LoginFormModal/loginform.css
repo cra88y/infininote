@@ -1,10 +1,23 @@
-#modal-content {
-  padding: 1em 3em;
+.modal-div {
+  /* padding: 1em 3em; */
+  background-position: center;
+  background-size: auto;
+  width: 400px;
+  height: 400px;
 }
 label,
 textarea {
   margin-bottom: 1em;
-  color: var(--neon);
+  font-weight: bold;
+  color: var(--accent);
+  text-align: center;
+}
+.login-title {
+  margin-top: -6.2rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: var(--dark);
 }
 form {
   display: flex;
@@ -15,7 +28,7 @@ form {
   height: 100%;
 }
 form > * {
-  color: var(--darkest);
+  color: var(--dark);
 }
 input {
   background-color: rgba(0, 0, 0, 0);
@@ -27,6 +40,7 @@ input {
   /* margin: 10px; */
   border-radius: 0;
   /* overflow: hidden; */
+  font-size: 1.25rem;
 }
 input:focus {
   outline: none;

@@ -33,6 +33,18 @@ export const setUserDark = (isDark) => async (dispatch) => {
   dispatch(setDark(isDark));
 };
 
+export const loginDemo = () => async (dispatch) => {
+  const res = await csrfFetch("/api/session/demo", {
+    method: "GET",
+  });
+  if (res.ok) {
+    const data = await res.json();
+    const user = data.user;
+    dispatch(login(user));
+  } else {
+  }
+};
+
 export const loginUser =
   ({ username, password }) =>
   async (dispatch) => {

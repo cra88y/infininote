@@ -10,11 +10,11 @@ import {
   createCollection,
   deleteCollection,
   loadCollections,
-  loadcollections,
   setActiveCollection,
 } from "../../store/collection";
 export default function ApplicationPage() {
   const sessionUser = useSelector((state) => state.session.user);
+  let collections = useSelector((state) => state.collections.collections) || {};
   const activeNote = useSelector((state) => state.notes.activeNote);
   const activeCollection = useSelector(
     (state) => state.collections.activeCollection
@@ -23,12 +23,14 @@ export default function ApplicationPage() {
   const [collectionName, setCollectionName] = useState("");
   const [isCreatingCollection, setIsCreatingCollection] = useState(false);
   const [isEditing, setEditing] = useState(false);
+  const [isSearching, setSearching] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const [errors, setErrors] = useState([]);
   // console.log(errors);
-  const collections =
-    useSelector((state) => state.collections.collections) || {};
+
   const history = useHistory();
   const dispatch = useDispatch();
+  // console.log(sessionUser);
   useEffect(() => {
     if (sessionUser) {
       dispatch(loadNotes());
@@ -48,6 +50,19 @@ export default function ApplicationPage() {
     dispatch(setActiveCollection(null));
     setCollectionId(null);
   };
+  const filteredCollections = {};
+  if (searchTerm) {
+    Object.values(collections).map((coll, idx) => {
+      if (coll.name.toLowerCase().includes(searchTerm.toLowerCase()))
+        Object.assign(filteredCollections, { [coll.id]: coll });
+    });
+    console.log(activeCollection);
+    if (activeCollection != null && !activeCollection.all) {
+      Object.assign(filteredCollections, {
+        [activeCollection.id]: activeCollection,
+      });
+    }
+  }
   useEffect(() => {
     // console.log(collectionName);
     const valErrors = [];
@@ -103,25 +118,32 @@ export default function ApplicationPage() {
             </h1>
             <div className="flex">
               <div className="collections-col threedee">
-                {
-                  <div className="user-notes-topbar">
-                    <button
-                      className="newNote-btn"
-                      onClick={(e) => {
-                        const collectionObj = {
-                          id: null,
-                          userid: sessionUser.id,
-                          name: "New Notebook",
-                        };
-                        dispatch(createCollection(collectionObj));
-                        // resetActiveCollection();
-                        // setIsCreatingCollection(true);
-                      }}
-                    >
-                      New Notebook
-                    </button>
-                  </div>
-                }
+                <div className="user-notes-topbar">
+                  <button
+                    className="newNote-btn"
+                    onClick={(e) => {
+                      const collectionObj = {
+                        id: null,
+                        userid: sessionUser.id,
+                        name: "New Notebook",
+                      };
+                      dispatch(createCollection(collectionObj));
+                      // resetActiveCollection();
+                      // setIsCreatingCollection(true);
+                    }}
+                  >
+                    New Notebook
+                  </button>
+                </div>
+
+                <input
+                  placeholder="Search Notebooks"
+                  minLength={1}
+                  maxLength={20}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="notebook-searchbar"
+                ></input>
+
                 <div
                   className={`flex-v-center collection-name ${
                     activeCollection?.all ? "selected" : ""
@@ -130,7 +152,11 @@ export default function ApplicationPage() {
                 >
                   All Notes
                 </div>
-                {Object.values(collections).map((coll) =>
+                {Object.values(
+                  Object.keys(filteredCollections).length === 0
+                    ? collections
+                    : filteredCollections
+                ).map((coll) =>
                   isCreatingCollection && activeCollection?.id == coll.id ? (
                     <div key={coll.id} className="collection-name">
                       {errors.length > 0 && (
@@ -191,7 +217,7 @@ export default function ApplicationPage() {
                               setIsCreatingCollection(true);
                             }}
                           >
-                            Edit Name
+                            Rename
                           </button>
                           <span className="middle-line" />
                           <button

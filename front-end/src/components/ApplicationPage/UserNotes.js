@@ -36,7 +36,7 @@ export default function UserNotes() {
     notesDisplay = notesArray.map((note) => {
       const notePreview = note.content
         .replace(/[:*~#\[\]\]]/gm, "")
-        .slice(0, 150);
+        .slice(0, 75);
       // console.log(note.id);
       return (
         <div

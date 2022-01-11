@@ -1,6 +1,7 @@
 .landing-flex {
   display: flex;
   justify-content: center;
+  height: 65vh;
 }
 .landing-content-flex {
   display: flex;
@@ -8,13 +9,17 @@
   width: 50%;
   justify-content: center;
   align-items: center;
+  /* height: 50%; */
 }
 .landing-title {
   color: var(--dark);
   text-align: center;
   margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
 }
 .landing-paragraph {
   text-align: center;
   color: var(--dark);
+  font-size: 1.5rem;
 }

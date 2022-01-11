@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  overflow: auto;
+  overflow: hidden;
 }
 .note-preview {
   overflow: hidden;
@@ -75,9 +75,9 @@
 }
 .edit-Notebook-btn {
   border-top: 1px solid var(--dark);
-  height: auto;
+  height: 1.5vw;
   width: 100%;
-  font-size: 1.25vw;
+  font-size: 0.75vw;
   flex-grow: 100;
 }
 .user-notes {
@@ -157,6 +157,9 @@
   height: auto;
   display: flex;
   justify-content: center;
+}
+.notebook-searchbar {
+  border-top: 1px black solid;
 }
 .w-md-editor,
 .note-textarea {
