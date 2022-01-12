@@ -4,9 +4,11 @@ import { Route, Switch, useHistory } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import Footer from "./components/Navigation/Footer";
 import LandingPage from "./components/LandingPage";
 import ApplicationPage from "./components/ApplicationPage";
 import Filter from "react-css-filter";
+
 function App() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
@@ -14,6 +16,7 @@ function App() {
   const userIsDark = useSelector((state) => state.session.dark);
   const [isLoaded, setIsLoaded] = useState(false);
   const history = useHistory();
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
   }, [dispatch]);
@@ -25,6 +28,7 @@ function App() {
   return (
     <>
       <Filter
+        className="page-container"
         effects={{
           "hue-rotate": `${userTheme}deg`,
         }}
@@ -37,19 +41,21 @@ function App() {
         > */}
         <Navigation isLoaded={isLoaded} />
         {isLoaded && (
-          <Switch>
-            <Route exact path="/">
-              <LandingPage />
-            </Route>
-            <Route path="/signup">
-              <SignupFormPage />
-            </Route>
-            <Route path="/client">
-              <ApplicationPage />
-            </Route>
-          </Switch>
+          <div className="content-container">
+            <Switch>
+              <Route exact path="/">
+                <LandingPage />
+              </Route>
+              <Route path="/signup">
+                <SignupFormPage />
+              </Route>
+              <Route path="/client">
+                <ApplicationPage />
+              </Route>
+            </Switch>
+          </div>
         )}
-        {/* </Filter> */}
+        <Footer />
       </Filter>
     </>
   );

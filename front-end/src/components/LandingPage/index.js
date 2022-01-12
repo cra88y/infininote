@@ -25,11 +25,12 @@ export default function LandingPage() {
           <NavLink to="/signup" className="nav-btn">
             Sign Up
           </NavLink>
-          <LoginFormModal />
+
+          <button onClick={handleSubmit} className="nav-btn">
+            Demo
+          </button>
         </div>
-        <button onClick={handleSubmit} className="nav-btn">
-          Demo
-        </button>
+        <LoginFormModal />
       </div>
     </div>
   );

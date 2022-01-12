@@ -36,7 +36,7 @@ export default function UserNotes() {
     notesDisplay = notesArray.map((note) => {
       const notePreview = note.content
         .replace(/[:*~#\[\]\]]/gm, "")
-        .slice(0, 75);
+        .slice(0, 150);
       // console.log(note.id);
       return (
         <div
@@ -59,7 +59,7 @@ export default function UserNotes() {
           </div>
           <div className="note-card-utils">
             <button
-              className="delete-btn"
+              className="delete-btn util-btn"
               onClick={(e) => {
                 e.stopPropagation();
                 dispatch(deleteNote(note));

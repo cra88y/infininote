@@ -59,10 +59,16 @@ export const loadNotes = () => async (dispatch) => {
   }
 };
 export const deleteNote = (note) => async (dispatch) => {
-  const res = await csrfFetch(`/api/notes/${note.id}`, {
-    method: "DELETE",
-  });
-  dispatch(remove(note));
+  if (
+    window.confirm(
+      `Are you sure you'd like to permanently delete your note titled "${note.title}"?`
+    )
+  ) {
+    const res = await csrfFetch(`/api/notes/${note.id}`, {
+      method: "DELETE",
+    });
+    dispatch(remove(note));
+  } else return;
 };
 const initialState = { notes: {}, activeNote: null };
 export const notesReducer = (state = initialState, action) => {

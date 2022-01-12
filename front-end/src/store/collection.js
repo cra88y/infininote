@@ -58,10 +58,12 @@ export const loadCollections = () => async (dispatch) => {
   }
 };
 export const deleteCollection = (collection) => async (dispatch) => {
-  const res = await csrfFetch(`/api/collections/${collection.id}`, {
-    method: "DELETE",
-  });
-  dispatch(remove(collection));
+  if (window.confirm(`Delete notebook named "${collection.name}"?`)) {
+    const res = await csrfFetch(`/api/collections/${collection.id}`, {
+      method: "DELETE",
+    });
+    dispatch(remove(collection));
+  } else return;
 };
 const initialState = { collections: {}, activeCollection: { all: true } };
 export const collectionsReducer = (state = initialState, action) => {

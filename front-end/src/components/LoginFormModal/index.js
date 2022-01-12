@@ -15,7 +15,7 @@ function LoginFormModal() {
 
   return (
     <>
-      <button onClick={onClick} className="nav-btn">
+      <button onClick={onClick} className="nav-txt nav-border">
         Log In
       </button>
       {showModal && (

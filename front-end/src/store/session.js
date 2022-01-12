@@ -26,6 +26,7 @@ const setDark = (dark) => ({
 });
 
 export const setUserTheme = (num) => async (dispatch) => {
+  localStorage.setItem("theme", num);
   dispatch(setTheme(num));
 };
 
@@ -64,13 +65,14 @@ export const loginUser =
   };
 
 export const logoutUser = () => async (dispatch) => {
-  const res = await csrfFetch("/api/session", { method: "DELETE" });
-  if (res.ok) {
-    dispatch(logout());
-    // window.location.reload(true);
-    return res;
-  } else {
-  }
+  if (window.confirm(`Logout?`)) {
+    const res = await csrfFetch("/api/session", { method: "DELETE" });
+    if (res.ok) {
+      dispatch(logout());
+      // window.location.reload(true);
+      return res;
+    }
+  } else return;
 };
 
 export const restoreUser = () => async (dispatch) => {

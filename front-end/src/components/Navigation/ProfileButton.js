@@ -3,9 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import * as sessionActions from "../../store/session";
 
 function ProfileButton({ user }) {
+  const savedTheme = localStorage.getItem("theme");
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  const [theme, setTheme] = useState(0);
+  const [theme, setTheme] = useState(savedTheme);
   const [dark, setDark] = useState(false);
   const userTheme = useSelector((state) => state.session.theme);
   const openMenu = () => {
@@ -20,8 +21,8 @@ function ProfileButton({ user }) {
   useEffect(() => {
     dispatch(sessionActions.setUserTheme(Number(theme)));
   }, [theme]);
+
   useEffect(() => {
-    console.log(dark);
     dispatch(sessionActions.setUserDark(dark));
   }, [dark]);
   useEffect(() => {
@@ -50,7 +51,7 @@ function ProfileButton({ user }) {
         }, 0);
       }}
     >
-      <button className="profile-btn" onClick={openMenu}>
+      <button className="profile-btn util-btn" onClick={openMenu}>
         <i className="fas fa-user-circle" />
       </button>
       {showMenu && (
@@ -74,7 +75,9 @@ function ProfileButton({ user }) {
             /> */}
           </li>
           <li>
-            <button onClick={logout}>Log Out</button>
+            <button className="util-btn" onClick={logout}>
+              Log Out
+            </button>
           </li>
         </ul>
       )}

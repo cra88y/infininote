@@ -56,7 +56,6 @@ export default function ApplicationPage() {
       if (coll.name.toLowerCase().includes(searchTerm.toLowerCase()))
         Object.assign(filteredCollections, { [coll.id]: coll });
     });
-    console.log(activeCollection);
     if (activeCollection != null && !activeCollection.all) {
       Object.assign(filteredCollections, {
         [activeCollection.id]: activeCollection,
@@ -64,7 +63,29 @@ export default function ApplicationPage() {
     }
   }
   useEffect(() => {
-    // console.log(collectionName);
+    setCollectionName(activeCollection?.name || "");
+    if (activeCollection && isCreatingCollection) {
+      // setTimeout(() => {
+      // }, 0);
+      // if (activeNote?.collectionId != activeCollection?.id) resetActiveNote(); //TODO PLS FIX
+      let didMatch = false;
+      if (!collectionId) {
+        const collectionComp = collectionName[0];
+        const newCollectionComp = activeCollection?.name?.slice(0, 1);
+        if (collectionComp == newCollectionComp) didMatch = true;
+      }
+      console.log(didMatch);
+      const addToCollectionName = didMatch ? collectionName : "";
+      setCollectionName(addToCollectionName || activeCollection.name || "");
+      setCollectionId(activeCollection.id || null);
+      setIsCreatingCollection(didMatch);
+    }
+    //  else {
+    //   resetActiveCollection();
+    // }
+  }, [activeCollection]);
+  useEffect(() => {
+    console.log("coll name validations");
     const valErrors = [];
     if (!collectionName.length) {
       valErrors.push("Name is too short!");
@@ -82,27 +103,6 @@ export default function ApplicationPage() {
     }
     setErrors(valErrors);
   }, [collectionName]);
-  useEffect(() => {
-    if (activeCollection && isCreatingCollection) {
-      // setTimeout(() => {
-      // }, 0);
-      // if (activeNote?.collectionId != activeCollection?.id) resetActiveNote(); //TODO PLS FIX
-      let didMatch = false;
-      if (!collectionId) {
-        const collectionComp = collectionName[0];
-        const newCollectionComp = activeCollection?.name?.slice(0, 1);
-        if (collectionComp == newCollectionComp) didMatch = true;
-      }
-      // console.log(didMatch);
-      const addToCollectionName = didMatch ? collectionName : "";
-      setCollectionName(addToCollectionName || activeCollection.name || "");
-      setCollectionId(activeCollection.id || null);
-      setIsCreatingCollection(didMatch);
-    }
-    //  else {
-    //   resetActiveCollection();
-    // }
-  }, [activeCollection]);
 
   if (!sessionUser) {
     history.push("/");
@@ -120,7 +120,7 @@ export default function ApplicationPage() {
               <div className="collections-col threedee">
                 <div className="user-notes-topbar">
                   <button
-                    className="newNote-btn"
+                    className="newNote-btn util-btn"
                     onClick={(e) => {
                       const collectionObj = {
                         id: null,
@@ -177,7 +177,7 @@ export default function ApplicationPage() {
                         autoFocus={true}
                         minLength={1}
                         maxLength={20}
-                        placeholder={coll.name}
+                        defaultValue={coll.name}
                         onBlur={(e) => {
                           const currentTarget = e.currentTarget;
                           setTimeout(() => {
@@ -211,7 +211,7 @@ export default function ApplicationPage() {
                       {activeCollection?.id == coll.id && (
                         <div className="flex-align-bottom ">
                           <button
-                            className="edit-Notebook-btn"
+                            className="edit-Notebook-btn util-btn"
                             onClick={(e) => {
                               e.stopPropagation();
                               setIsCreatingCollection(true);
@@ -221,7 +221,7 @@ export default function ApplicationPage() {
                           </button>
                           <span className="middle-line" />
                           <button
-                            className="edit-Notebook-btn"
+                            className="edit-Notebook-btn util-btn"
                             onClick={(e) => {
                               e.stopPropagation();
                               dispatch(deleteCollection(coll));
@@ -238,7 +238,7 @@ export default function ApplicationPage() {
               <div className="user-notes threedee">
                 <div className="user-notes-topbar">
                   <button
-                    className="newNote-btn"
+                    className="newNote-btn util-btn"
                     onClick={(e) => {
                       if (activeNote) {
                         resetActiveNote();
