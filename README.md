@@ -13,7 +13,8 @@ It's features include user accounts with secure password hashing, note writing &
 - Express
 - PostgreSQL
 - Sequelize
--  BCrypt
+- BCrypt
+- MDEditor 
 
 # Screenshots
  ![Application](https://github.com/cra88y/infininote/blob/main/info/application.png)
