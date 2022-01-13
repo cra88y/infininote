@@ -55,13 +55,13 @@ export default function CreateNote({
       // return;
     }
     if (!title.length) {
-      valErrors.push(" Note name is too short".toUpperCase());
+      valErrors.push("Note name is too short".toUpperCase());
     }
     if (title.length > 80) {
-      valErrors.push("Note name is too long");
+      valErrors.push("Note name is too long".toUpperCase());
     }
-    if (content.length > 3000) {
-      valErrors.push("Note length must be < 3000 characters".toUpperCase());
+    if (content.length > 9999) {
+      valErrors.push("Note length must be < 9999 characters".toUpperCase());
     }
     if (valErrors.length == 0) {
       setTimeout(async () => {
