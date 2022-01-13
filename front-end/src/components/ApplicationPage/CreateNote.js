@@ -46,7 +46,6 @@ export default function CreateNote({
   //   "activeNoteCollName: " + collectionNameFromId(activeNote?.collectionid)
   // );
   const onFormChange = (e) => {
-    console.log(3);
     const valErrors = [];
     if (!noteId && !title.length && !content.length) {
       setErrors(valErrors);
@@ -80,8 +79,6 @@ export default function CreateNote({
           title,
           content,
         };
-        console.log(noteObj);
-        console.log("active ", activeNote);
         // await dispatch(setActiveNote(noteObj));
         await dispatch(createNote(noteObj));
         setChangingCollection(false);
@@ -91,7 +88,6 @@ export default function CreateNote({
   };
 
   useEffect(() => {
-    console.log(4);
     if (isEditing) {
       onFormChange();
     }
@@ -104,7 +100,6 @@ export default function CreateNote({
   };
 
   useEffect(() => {
-    console.log(2);
     setErrors([]);
     if (activeNote) {
       let didMatch = false;
@@ -115,7 +110,7 @@ export default function CreateNote({
       }
       // console.log("content", content);
       // console.log("active", activeNote.content);
-      console.log(didMatch);
+      // console.log(didMatch);
       const addToTitle = didMatch ? title : "";
       const addToContent = didMatch ? content : "";
       setTitle(addToTitle || activeNote.title || "");
