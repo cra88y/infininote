@@ -26,6 +26,6 @@ It's features include user accounts with secure password hashing, note writing &
 3. Create a PostgreSQL database and user for the app
 4. Rename backend/.env.EXAMPLE to ".env", and fill out the values using the PostgreSQL information
 5. Create the database with the command `npx dotenv sequelize db:create`
-6. Run migrations with the command `npx dotenv sequelize db:migrations`
+6. Run migrations with the command `npx dotenv sequelize db:migrate`
 8. Run the Express backend server with the command `npm start` in the /backend directory
 9. In a new terminal, run `npm start` in the /front-end directory
