@@ -1,10 +1,16 @@
 # InfiniNote
 
-InfiniNote is a React project inspired by EverNote allowing you to write and categorize notes.
+[InfiniNote](https://infininote.herokuapp.com/ "Live site hosted on Heroku") is a minimalist note taking application inspired by [EverNote](https://evernote.com/, "EverNote").
+
+This project is hosted on Heroku and the live site with demo is accessible via the hyperlink above.
+
+It's features include user accounts with secure password hashing, note writing & editing with autosave, markdown editor support, notebooks to categorize your notes, as well as sitewide theming.
 
 # Technologies Used
+- Node.js
 - React
 - Redux
-- Sequelize
-- PostgreSQL
 - Express
+- PostgreSQL
+- Sequelize
+-  BCrypt
