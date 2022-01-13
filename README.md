@@ -22,7 +22,7 @@ It's features include user accounts with secure password hashing, note writing &
 # Setup Instructions To Run
 
 1. Clone this repo
-2.  In the root directory of the cloned repo, run `npm install` to install dependencies.
+2. In the root directory of the cloned repo, run `npm install` to install dependencies
 3. Create a PostgreSQL database and user for the app
 4. Rename backend/.env.EXAMPLE to ".env", and fill out the values using the PostgreSQL information
 5. Create the database with the command `npx dotenv sequelize db:create`
