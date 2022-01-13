@@ -153,14 +153,16 @@ button {
 
 button:hover,
 .nav-btn:hover,
-.nav-border:hover {
+.nav-border:hover,
+.fas:hover {
   filter: brightness(110%);
 }
 strong {
   font-weight: 600;
 }
 .fas {
-  color: whitesmoke;
+  color: var(--accent);
+  font-size: 2rem;
 }
 svg {
   width: 1vw;

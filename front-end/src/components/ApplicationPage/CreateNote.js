@@ -63,11 +63,10 @@ export default function CreateNote({
       valErrors.push("Note length must be < 3000 characters".toUpperCase());
     }
     if (valErrors.length == 0) {
-    
       setTimeout(() => {
         // console.log(activeNote);
         // console.log(noteId);
-        console.log("note save on in CreateNote".toUpperCase());
+        // console.log("note save on in CreateNote".toUpperCase());
         const noteObj = {
           id: activeNote?.id,
           userid: sessionUser.id,
@@ -194,7 +193,6 @@ export default function CreateNote({
                 : "None"
             }
             onChange={(e) => {
-              console.log(e.target.value);
               setChangingCollection(true);
               // const selectedIndex = e.target.options.selectedIndex;
               // const collid =

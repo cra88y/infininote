@@ -66,15 +66,19 @@
   right: 1em;
   position: absolute;
   z-index: 999;
-  background-color: white;
+  background-color: whitesmoke;
   border: 1px solid var(--accent);
 }
 
 .profile-dropdown > li {
-  /* text-align: right; */
   list-style: none;
 }
 .profile-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: whitesmoke;
   height: 100%;
   width: 75px;
 }

@@ -74,7 +74,6 @@ export default function ApplicationPage() {
         const newCollectionComp = activeCollection?.name?.slice(0, 1);
         if (collectionComp == newCollectionComp) didMatch = true;
       }
-      console.log(didMatch);
       const addToCollectionName = didMatch ? collectionName : "";
       setCollectionName(addToCollectionName || activeCollection.name || "");
       setCollectionId(activeCollection.id || null);
@@ -85,7 +84,6 @@ export default function ApplicationPage() {
     // }
   }, [activeCollection]);
   useEffect(() => {
-    console.log("coll name validations");
     const valErrors = [];
     if (!collectionName.length) {
       valErrors.push("Name is too short!");

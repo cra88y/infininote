@@ -9,9 +9,8 @@ function ProfileButton({ user }) {
   const [theme, setTheme] = useState(savedTheme);
   const [dark, setDark] = useState(false);
   const userTheme = useSelector((state) => state.session.theme);
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
+  const openMenu = (e) => {
+    setShowMenu(!showMenu);
   };
 
   const closeMenu = () => {
@@ -27,9 +26,7 @@ function ProfileButton({ user }) {
   }, [dark]);
   useEffect(() => {
     if (!showMenu) return;
-
-    // document.addEventListener("click", closeMenu);
-
+    document.addEventListener("click", closeMenu);
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
@@ -51,11 +48,15 @@ function ProfileButton({ user }) {
         }, 0);
       }}
     >
-      <button className="profile-btn util-btn" onClick={openMenu}>
+      <div
+        className="profile-btn util-btn"
+        onClick={openMenu}
+        onBlur={openMenu}
+      >
         <i className="fas fa-user-circle" />
-      </button>
+      </div>
       {showMenu && (
-        <ul className="profile-dropdown">
+        <ul onClick={(e) => e.stopPropagation()} className="profile-dropdown">
           <li>{user.username}</li>
           <li>{user.email}</li>
           <li>
@@ -65,7 +66,9 @@ function ProfileButton({ user }) {
               min="0"
               max="360"
               value={theme}
-              onChange={(e) => setTheme(e.target.value)}
+              onChange={(e) => {
+                setTheme(e.target.value);
+              }}
             />
             {/* <span>Dark:</span>
             <input
