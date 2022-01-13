@@ -4,7 +4,7 @@
 
 This project is hosted on Heroku and the live site with demo is accessible via the hyperlink above.
 
-It's features include user accounts with secure password hashing, note writing with auto-save, markdown support, notebooks to categorize notes, as well as sitewide theming.
+It's features include user accounts with secure password hashing, note writing & editing with autosave, markdown editor support, notebooks to categorize your notes, as well as sitewide theming.
 
 # Technologies Used
 - Node.js
@@ -14,5 +14,3 @@ It's features include user accounts with secure password hashing, note writing w
 - PostgreSQL
 - Sequelize
 -  BCrypt
-
-
