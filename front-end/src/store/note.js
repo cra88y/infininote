@@ -23,7 +23,7 @@ const setActive = (noteObj) => ({
 });
 
 export const setActiveNote = (noteObj) => async (dispatch) => {
-  dispatch(setActive(noteObj));
+  await dispatch(setActive(noteObj));
 };
 
 let isNewSave = false;
@@ -36,9 +36,9 @@ export const createNote = (noteObj) => async (dispatch) => {
     });
     if (res.ok) {
       const data = await res.json();
-      dispatch(create(data));
+      await dispatch(create(data));
       if (!noteObj.id) {
-        dispatch(setActive(data));
+        await dispatch(setActive(data));
         isNewSave = false;
       }
     }

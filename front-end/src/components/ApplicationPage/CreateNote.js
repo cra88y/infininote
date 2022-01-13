@@ -46,6 +46,7 @@ export default function CreateNote({
   //   "activeNoteCollName: " + collectionNameFromId(activeNote?.collectionid)
   // );
   const onFormChange = (e) => {
+    console.log(3);
     const valErrors = [];
     if (!noteId && !title.length && !content.length) {
       setErrors(valErrors);
@@ -63,7 +64,7 @@ export default function CreateNote({
       valErrors.push("Note length must be < 3000 characters".toUpperCase());
     }
     if (valErrors.length == 0) {
-      setTimeout(() => {
+      setTimeout(async () => {
         // console.log(activeNote);
         // console.log(noteId);
         // console.log("note save on in CreateNote".toUpperCase());
@@ -79,7 +80,10 @@ export default function CreateNote({
           title,
           content,
         };
-        dispatch(createNote(noteObj));
+        console.log(noteObj);
+        console.log("active ", activeNote);
+        // await dispatch(setActiveNote(noteObj));
+        await dispatch(createNote(noteObj));
         setChangingCollection(false);
       }, 0);
     }
@@ -87,21 +91,20 @@ export default function CreateNote({
   };
 
   useEffect(() => {
+    console.log(4);
     if (isEditing) {
       onFormChange();
     }
-  }, [title, content, activeCollection]);
-  useEffect(() => {
-    // setEditing(true);
-    // reset();
-  }, [activeCollection]);
+  }, [title, content, activeNote]);
   const resetActiveNote = () => {
     setTitle("");
     setContent("");
     setNoteId(null);
-    // dispatch(setActiveNote(null));
+    // await dispatch(setActiveNote(null));
   };
+
   useEffect(() => {
+    console.log(2);
     setErrors([]);
     if (activeNote) {
       let didMatch = false;
@@ -110,15 +113,15 @@ export default function CreateNote({
         const newTitleComp = activeNote?.title?.slice(0, 1);
         if (titleComp == newTitleComp) didMatch = true;
       }
-      // if (!changingCollection) {
+      // console.log("content", content);
+      // console.log("active", activeNote.content);
+      console.log(didMatch);
       const addToTitle = didMatch ? title : "";
       const addToContent = didMatch ? content : "";
       setTitle(addToTitle || activeNote.title || "");
       setContent(addToContent || activeNote.content || "");
       setNoteId(activeNote.id || null);
-      setEditing(didMatch);
-      // }
-
+      // setEditing(didMatch);
       if (didMatch) {
         onFormChange();
       }
@@ -127,12 +130,14 @@ export default function CreateNote({
     }
   }, [activeNote]);
 
-  useEffect(() => {
-    const noteObj = Object.values(notes || {}).find((note) => {
-      return note?.id == activeNote?.id;
-    });
-    if (noteObj?.title != activeNote?.title) dispatch(setActiveNote(noteObj));
-  }, [activeNote]);
+  // useEffect(async () => {
+  //   console.log(1);
+  //   const noteObj = Object.values(notes || {}).find((note) => {
+  //     return note?.id == activeNote?.id;
+  //   });
+  //   if (noteObj?.title != activeNote?.title)
+  //     await dispatch(setActiveNote(noteObj));
+  // }, [activeCollection]);
 
   const noteDisplay = (
     <>
@@ -192,7 +197,7 @@ export default function CreateNote({
                 ? activeCollection?.id || "None"
                 : "None"
             }
-            onChange={(e) => {
+            onChange={async (e) => {
               setChangingCollection(true);
               // const selectedIndex = e.target.options.selectedIndex;
               // const collid =
@@ -201,13 +206,18 @@ export default function CreateNote({
               // console.log("collid" + collid);
               const collObj = collectionObjFromId(e.target.value);
               if (e.target.value == "None")
-                dispatch(setActiveCollection({ all: true }));
+                await dispatch(setActiveCollection({ all: true }));
               else {
-                dispatch(setActiveCollection(collObj));
+                await dispatch(setActiveCollection(collObj));
               }
-              dispatch(
-                setActiveNote({ ...activeNote, collectionid: collObj?.id })
-              );
+              const noteObj = {
+                id: activeNote?.id,
+                userid: sessionUser.id,
+                collectionid: collObj?.id,
+                title,
+                content,
+              };
+              await dispatch(setActiveNote(noteObj));
             }}
           >
             <option>None</option>
