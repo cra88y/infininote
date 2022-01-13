@@ -20,12 +20,11 @@ It's features include user accounts with secure password hashing, note writing &
 
 # Setup Instructions To Run
 
-Clone this repo
-1. In the root directory of the cloned repo, run npm install to install dependencies.
-2. Create a PostgreSQL database and user for the app
-3. Rename backend/.env.EXAMPLE to ".env", and fill out the values using the PostgreSQL information
-4. Create the database with the command `npx dotenv sequelize db:create`
-5. Run migrations with the command `npx dotenv sequelize db:migrations`
-6. Seed the database with the command `npx dotenv sequelize db:seed:all`
-7. Run the backend with the command npm start in the backend directory
-8. In a new terminal, run npm start in the frontend directory
+1. Clone this repo
+2.  In the root directory of the cloned repo, run `npm install` to install dependencies.
+3. Create a PostgreSQL database and user for the app
+4. Rename backend/.env.EXAMPLE to ".env", and fill out the values using the PostgreSQL information
+5. Create the database with the command `npx dotenv sequelize db:create`
+6. Run migrations with the command `npx dotenv sequelize db:migrations`
+8. Run the Express backend server with the command `npm start` in the /backend directory
+9. In a new terminal, run `npm start` in the /front-end directory
