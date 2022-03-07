@@ -20,6 +20,8 @@ It's features include user accounts with secure password hashing, note writing &
  ![Application](https://github.com/cra88y/infininote/blob/main/info/application.png)
  ![Application](https://github.com/cra88y/infininote/blob/main/info/application2.png)
  ![Application](https://github.com/cra88y/infininote/blob/main/info/application3.png)
+ ![image](https://user-images.githubusercontent.com/22042885/156962351-12d8e29a-9487-49d6-ba93-0eef1384ea19.png)
+
 # Setup Instructions To Run
 
 1. Clone this repo
