@@ -13,18 +13,21 @@ It's features include user accounts with secure password hashing, note writing &
 - Express
 - PostgreSQL
 - Sequelize
--  BCrypt
+- BCrypt
+- MDEditor 
 
 # Screenshots
  ![Application](https://github.com/cra88y/infininote/blob/main/info/application.png)
+ ![Application](https://github.com/cra88y/infininote/blob/main/info/application2.png)
+ ![image](https://user-images.githubusercontent.com/22042885/156962351-12d8e29a-9487-49d6-ba93-0eef1384ea19.png)
 
 # Setup Instructions To Run
 
 1. Clone this repo
-2.  In the root directory of the cloned repo, run `npm install` to install dependencies.
+2. In the root directory of the cloned repo, run `npm install` to install dependencies
 3. Create a PostgreSQL database and user for the app
 4. Rename backend/.env.EXAMPLE to ".env", and fill out the values using the PostgreSQL information
 5. Create the database with the command `npx dotenv sequelize db:create`
-6. Run migrations with the command `npx dotenv sequelize db:migrations`
+6. Run migrations with the command `npx dotenv sequelize db:migrate`
 8. Run the Express backend server with the command `npm start` in the /backend directory
 9. In a new terminal, run `npm start` in the /front-end directory
