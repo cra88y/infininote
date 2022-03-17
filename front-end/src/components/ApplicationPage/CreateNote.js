@@ -173,7 +173,7 @@ export default function CreateNote({
           }}
           value={title}
         />
-        {/* <span className="flex-v-center">Notebook: </span> */}
+        <span className="flex-v-center">Notebook: </span>
         {collections == null ? (
           <span>No Notebooks</span>
         ) : (
@@ -245,7 +245,6 @@ export default function CreateNote({
     <div
       onBlur={(e) => {
         const currentTarget = e.currentTarget;
-        // console.log("ay");
         setTimeout(() => {
           // Check if the new activeElement is a child of the original container
           if (!currentTarget.contains(document.activeElement)) {
